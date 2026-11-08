@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线之家-影视聚合_追剧推荐_高清资源导航</title>
+<meta name="description" content="在线之家提供影视聚合与追剧推荐，涵盖高清资源导航、剧集分类筛选、热播动态与深度解析，适合喜欢在线观看影视内容的用户。">
+<meta name="keywords" content="影视聚合,追剧推荐,高清资源,剧集分类,在线观看">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f172a'/%3E%3Cpath d='M25 65 L50 25 L75 65 Z' fill='%23f59e0b'/%3E%3Ccircle cx='50' cy='72' r='10' fill='%23f59e0b'/%3E%3C/svg%3E">
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+<style>
+:root {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --ink: #0f172a;
+  --ink-soft: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --brand: #0f172a;
+  --accent: #f59e0b;
+  --accent-soft: #fef3c7;
+  --radius: 14px;
+  --shadow: 0 10px 30px -12px rgba(15,23,42,.18);
+  --font: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --announce-h: 38px;
+  --header-h: 62px;
+  --sticky-offset: calc(var(--announce-h) + var(--header-h) + 10px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-offset); }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+}
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+h1,h2,h3,h4 { margin: 0 0 .5em; line-height: 1.35; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.08rem; }
+p { margin: 0 0 .9em; }
+ul { margin: 0 0 .9em; padding-left: 1.2em; }
+li { margin-bottom: .35em; }
+.container { width: min(1360px, calc(100% - 32px)); margin: 0 auto; }
+
+/* 公告条 */
+.announce {
+  position: sticky; top: 0; z-index: 60;
+  height: var(--announce-h);
+  background: var(--brand);
+  color: #f8fafc;
+  font-size: 13px;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.announce .container { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.announce .tag { background: var(--accent); color: #0f172a; font-weight: 700; padding: 2px 8px; border-radius: 999px; font-size: 11px; letter-spacing: .04em; }
+.announce p { margin: 0; overflow: hidden; text-overflow: ellipsis; }
+
+/* 页头 */
+.site-header {
+  position: sticky; top: var(--announce-h); z-index: 50;
+  height: var(--header-h);
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .container { height: 100%; display: flex; align-items: center; gap: 22px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; letter-spacing: .02em; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.main-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.main-nav a { padding: 7px 12px; border-radius: 10px; color: var(--ink-soft); font-size: 14px; }
+.main-nav a:hover, .main-nav a:focus-visible { background: #f1f5f9; color: var(--ink); outline: none; }
+.header-actions { margin-left: auto; display: flex; gap: 8px; }
+.header-actions .btn { padding: 7px 14px; border-radius: 10px; font-size: 13px; border: 1px solid var(--line); background: var(--panel); color: var(--ink-soft); }
+.header-actions .btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+/* 首屏 */
+.hero { padding: 40px 0 28px; background: linear-gradient(180deg,#fff 0%, #f8fafc 100%); border-bottom: 1px solid var(--line); }
+.hero .container { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+.hero h1 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); letter-spacing: -.02em; margin-bottom: .25em; }
+.hero .lede { color: var(--muted); font-size: 15px; max-width: 46ch; margin-bottom: 1.2em; }
+.hero .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.hero .pill { background: var(--accent-soft); color: #92400e; font-size: 12px; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+.hero .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero .cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 12px; font-weight: 600; font-size: 14px; }
+.hero .cta.primary { background: var(--brand); color: #fff; }
+.hero .cta.ghost { border: 1px solid var(--line); background: #fff; color: var(--ink-soft); }
+.hero-visual { background: #0f172a; border-radius: 20px; padding: 18px; box-shadow: var(--shadow); color: #e2e8f0; }
+.hero-visual .bar { display: flex; gap: 6px; margin-bottom: 14px; }
+.hero-visual .dot { width: 9px; height: 9px; border-radius: 50%; background: #475569; }
+.hero-visual .dot:nth-child(1){ background:#f87171; }
+.hero-visual .dot:nth-child(2){ background:#fbbf24; }
+.hero-visual .dot:nth-child(3){ background:#34d399; }
+.hero-visual .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.hero-visual .thumb { background: #1e293b; border-radius: 10px; aspect-ratio: 16/10; display: flex; align-items: flex-end; padding: 8px; font-size: 10px; color: #94a3b8; }
+.hero-visual .thumb:nth-child(2){ background: #1e293b; }
+.hero-visual .caption { margin-top: 12px; font-size: 12px; color: #94a3b8; display: flex; justify-content: space-between; }
+
+/* 三栏主内容 */
+.layout { display: grid; grid-template-columns: 176px minmax(0,1fr) 240px; gap: 24px; padding: 32px 0 48px; align-items: start; }
+.left-col, .right-col { position: sticky; top: var(--sticky-offset); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+.panel + .panel { margin-top: 16px; }
+.panel h2, .panel h3 { font-size: .92rem; text-transform: none; letter-spacing: .02em; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+.channel-nav a { display: block; padding: 7px 10px; border-radius: 9px; font-size: 13.5px; color: var(--ink-soft); }
+.channel-nav a:hover { background: #f1f5f9; }
+.channel-nav a.active { background: var(--brand); color: #fff; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-list a, .tag-list span { font-size: 12px; padding: 4px 9px; border-radius: 999px; background: #f1f5f9; color: var(--ink-soft); border: 1px solid transparent; }
+.tag-list a:hover { border-color: var(--accent); color: #92400e; background: #fffbeb; }
+
+/* 中栏板块 */
+.section { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+.section > h2 { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.section > h2::before { content: ""; width: 4px; height: 20px; background: var(--accent); border-radius: 2px; }
+.section .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 16px; }
+.card-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.card { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: #fff; display: flex; flex-direction: column; gap: 8px; transition: .15s; }
+.card:hover { border-color: #cbd5e1; box-shadow: 0 8px 24px -16px rgba(15,23,42,.3); }
+.card .kind { font-size: 11px; font-weight: 700; color: #92400e; background: var(--accent-soft); align-self: flex-start; padding: 2px 8px; border-radius: 999px; }
+.card h3 { font-size: 1rem; margin: 0; }
+.card .blurb { font-size: 13px; color: var(--muted); margin: 0; }
+.card .meta { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; margin-top: auto; }
+.card .meta strong { color: #b45309; font-weight: 700; }
+
+.compact-list { list-style: none; padding: 0; margin: 0; }
+.compact-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.compact-list li:last-child { border-bottom: 0; }
+.compact-list .idx { color: var(--accent); font-weight: 800; min-width: 1.6em; }
+.compact-list .txt { color: var(--ink-soft); }
+.compact-list .date { margin-left: auto; color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+.cat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.cat-grid a { display: block; padding: 12px 10px; border-radius: 10px; background: #f8fafc; border: 1px solid var(--line); font-size: 13.5px; text-align: center; font-weight: 600; color: var(--ink-soft); }
+.cat-grid a:hover { background: #fffbeb; border-color: #fcd34d; color: #92400e; }
+
+.deep h3 { margin-top: 18px; color: var(--ink); }
+.deep p { color: var(--ink-soft); font-size: 14.5px; max-width: 68ch; }
+.deep ul { color: var(--ink-soft); font-size: 14.5px; }
+
+.steps { counter-reset: step; list-style: none; padding: 0; }
+.steps li { position: relative; padding-left: 38px; margin-bottom: 14px; font-size: 14px; color: var(--ink-soft); }
+.steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: #92400e; font-weight: 800; display: grid; place-items: center; font-size: 13px; }
+
+details.faq { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; background: #fff; }
+details.faq summary { cursor: pointer; font-weight: 600; font-size: 14.5px; list-style: none; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::after { content: "+"; float: right; color: var(--muted); font-weight: 700; }
+details.faq[open] summary::after { content: "–"; }
+details.faq p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+
+.comments { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.comment { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13px; background: #fff; }
+.comment .who { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-weight: 700; color: var(--ink-soft); }
+.comment .avatar { width: 24px; height: 24px; border-radius: 50%; background: var(--accent-soft); color: #92400e; display: grid; place-items: center; font-size: 11px; font-weight: 800; }
+.comment .text { color: var(--muted); margin: 0; }
+
+.news-list { list-style: none; padding: 0; margin: 0; }
+.news-list li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.news-list li:last-child { border-bottom: 0; }
+.news-list h3 { font-size: 14.5px; margin: 0 0 3px; }
+.news-list .meta { font-size: 12px; color: var(--muted); display: flex; gap: 10px; }
+.news-list p { margin: 4px 0 0; font-size: 13.5px; color: var(--muted); }
+
+.rec-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.rec-tags a { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink-soft); }
+.rec-tags a:hover { border-color: var(--accent); color: #92400e; background: #fffbeb; }
+
+.quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.quote { background: #f8fafc; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13.5px; color: var(--ink-soft); }
+.quote cite { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); font-style: normal; }
+
+.timeline { list-style: none; padding: 0; margin: 0; }
+.timeline li { position: relative; padding: 0 0 16px 22px; border-left: 2px solid var(--line); font-size: 14px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; }
+.timeline .t { font-size: 12px; color: var(--muted); font-weight: 700; }
+
+/* 右栏 */
+.toc a { display: block; padding: 5px 0; font-size: 13px; color: var(--ink-soft); border-bottom: 1px dashed var(--line); }
+.toc a:last-child { border-bottom: 0; }
+.hot-list { list-style: none; padding: 0; margin: 0; }
+.hot-list li { display: flex; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.hot-list li:last-child { border-bottom: 0; }
+.hot-list .n { color: var(--accent); font-weight: 800; }
+.hot-list .title { color: var(--ink-soft); }
+.read-more { display: block; font-size: 13px; padding: 6px 0; color: var(--ink-soft); border-bottom: 1px dashed var(--line); }
+.read-more:last-child { border-bottom: 0; }
+.read-more:hover { color: #b45309; }
+
+/* 页脚 */
+.site-footer { border-top: 1px solid var(--line); background: #fff; padding: 36px 0 28px; margin-top: 12px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; }
+.footer-grid h3 { font-size: .85rem; color: var(--muted); margin-bottom: 10px; }
+.footer-grid a { display: block; font-size: 13px; color: var(--ink-soft); padding: 3px 0; }
+.footer-grid a:hover { color: #b45309; }
+.footer-brand p { font-size: 13px; color: var(--muted); max-width: 32ch; }
+.footer-bottom { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+/* 响应式 */
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: 170px minmax(0,1fr); }
+  .right-col { display: none; }
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 520px; }
+}
+@media (max-width: 820px) {
+  .main-nav { display: none; }
+  .layout { grid-template-columns: 1fr; }
+  .left-col { position: static; }
+  .channel-nav { display: flex; flex-wrap: wrap; gap: 4px; }
+  .channel-nav a { padding: 6px 10px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(2,1fr); }
+  .comments { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .container { width: calc(100% - 24px); }
+  .section { padding: 16px; }
+  .hero { padding: 28px 0 20px; }
+  .hero h1 { font-size: 1.75rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .announce .container { gap: 6px; }
+  .announce p { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 吸顶公告条 -->
+<div class="announce" id="announce-bar">
+  <div class="container">
+    <span class="tag">上新</span>
+    <p>本周新增「都市情感剧集」专区，同步更新热播剧集与高分电影推荐，追剧不迷路。</p>
+  </div>
+</div>
+
+<!-- 吸顶页头 -->
+<header class="site-header">
+  <div class="container">
+    <a href="/#home" class="brand" aria-label="在线之家首页">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="22" fill="#0f172a"/>
+        <path d="M25 65 L50 25 L75 65 Z" fill="#f59e0b"/>
+        <circle cx="50" cy="72" r="10" fill="#f59e0b"/>
+      </svg>
+      <span>在线之家</span>
+    </a>
+    <nav class="main-nav" aria-label="主题导航">
+      <a href="/#hot">热播剧集</a>
+      <a href="/#latest">最新更新</a>
+      <a href="/#categories">分类导航</a>
+      <a href="/#deep">深度解析</a>
+      <a href="/#faq">常见问答</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn" href="/#latest">更新动态</a>
+      <a class="btn primary" href="/#hot">开始追剧</a>
+    </div>
+  </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" id="home">
+  <div class="container">
+    <div>
+      <h1>在线之家</h1>
+      <p class="lede">聚合热播剧集与高分电影，提供清晰的分类筛选、追剧推荐与内容解析，帮你更快找到想看的影视内容。</p>
+      <div class="pill-row">
+        <span class="pill">都市情感</span>
+        <span class="pill">悬疑短剧</span>
+        <span class="pill">高分电影</span>
+        <span class="pill">通勤追剧</span>
+        <span class="pill">完结推荐</span>
+      </div>
+      <div class="cta-row">
+        <a class="cta primary" href="/#hot">浏览热门推荐</a>
+        <a class="cta ghost" href="/#categories">按分类查找</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="grid">
+        <div class="thumb">都市情感</div>
+        <div class="thumb">悬疑推理</div>
+        <div class="thumb">高分电影</div>
+        <div class="thumb">古装传奇</div>
+        <div class="thumb">青春校园</div>
+        <div class="thumb">科幻冒险</div>
+      </div>
+      <div class="caption"><span>今日更新 28 部</span><span>追剧收藏 1.2k</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 三栏主内容 -->
+<div class="container layout">
+
+  <!-- 左栏 -->
+  <aside class="left-col" aria-label="频道与标签索引">
+    <div class="panel">
+      <h2>频道导航</h2>
+      <nav class="channel-nav" aria-label="内容频道">
+        <a href="/#hot" class="active">热播剧集</a>
+        <a href="/#latest">最新更新</a>
+        <a href="/#categories">分类查找</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">观看指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#recommend">延伸推荐</a>
+        <a href="/#timeline">更新时间线</a>
+      </nav>
+    </div>
+    <div class="panel">
+      <h2>热门标签</h2>
+      <div class="tag-list">
+        <a href="/#categories">都市情感</a>
+        <a href="/#categories">悬疑短剧</a>
+        <a href="/#categories">高分电影</a>
+        <a href="/#categories">古装传奇</a>
+        <a href="/#categories">青春校园</a>
+        <a href="/#categories">科幻冒险</a>
+        <a href="/#categories">家庭伦理</a>
+        <a href="/#categories">犯罪推理</a>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>追剧场景</h2>
+      <div class="tag-list">
+        <span>睡前看</span>
+        <span>通勤追</span>
+        <span>周末 binge</span>
+        <span>下饭剧</span>
+        <span>完结一口气</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 中栏 -->
+  <main class="mid-col">
+
+    <!-- 1. 内容简介 -->
+    <section class="section" id="about">
+      <h2>关于在线之家</h2>
+      <p>在线之家是一个面向影视爱好者的内容聚合与导航页面，围绕热播剧集、高分电影和类型化内容提供清晰的分类入口与推荐参考。无论你想找一部适合通勤路上追的都市情感剧，还是想挑一部周末一口气看完的悬疑短剧，都可以在这里按类型、更新节奏和口碑方向快速缩小选择范围。</p>
+      <p>平台内容以剧集和电影为主，涵盖都市情感、悬疑推理、古装传奇、青春校园、科幻冒险、家庭伦理等常见类型。每个推荐条目会附带类型标签、简要看点和更新状态，方便你在不同场景下做出选择。对于正在更新的剧集，页面会标注更新节奏；对于已完结作品，也会给出适合补看的提示。</p>
+      <p>如果你更关注“完结了吗”“在哪看”“和同类比哪个更值得追”这类问题，可以通过分类筛选和深度解析板块获得更具体的判断依据。页面同时整理了用户评论、相关资讯和延伸推荐，帮助你在选定一部作品后继续发现同类型或同题材的内容。</p>
+    </section>
+
+    <!-- 2. 热门内容推荐 -->
+    <section class="section" id="hot">
+      <h2>热播剧集与高分电影推荐</h2>
+      <p class="sub">按类型与口碑精选，适合通勤追剧、睡前放松或周末补看。</p>
+      <div class="card-grid">
+        <article class="card">
+          <span class="kind">都市情感</span>
+          <h3>《晚风便利店》</h3>
+          <p class="blurb">都市夜归人题材，围绕一家深夜便利店展开三段交错的情感故事，节奏舒缓适合睡前看。</p>
+          <div class="meta"><span>热度 <strong>9.2</strong></span><span>更新至 18 集</span><span>好评率 94%</span></div>
+        </article>
+        <article class="card">
+          <span class="kind">悬疑短剧</span>
+          <h3>《第七码头》</h3>
+          <p class="blurb">单集 25 分钟的悬疑短剧，以码头失踪案为线索，适合通勤路上分段追看。</p>
+          <div class="meta"><span>热度 <strong>8.9</strong></span><span>全 12 集完结</span><span>评分 8.7</span></div>
+        </article>
+        <article class="card">
+          <span class="kind">高分电影</span>
+          <h3>《山与海的距离》</h3>
+          <p class="blurb">家庭伦理题材剧情片，讲述两代人跨越十年的和解，适合周末静下心观看。</p>
+          <div class="meta"><span>热度 <strong>9.0</strong></span><span>片长 118 分钟</span><span>评分 9.1</span></div>
+        </article>
+        <article class="card">
+          <span class="kind">古装传奇</span>
+          <h3>《长安十二辰》</h3>
+          <p class="blurb">以盛唐长安为背景的悬疑传奇剧，服化道考究，适合喜欢历史氛围与推理元素的观众。</p>
+          <div class="meta"><span>热度 <strong>8.8</strong></span><span>更新至 24 集</span><span>好评率 91%</span></div>
+        </article>
+        <article class="card">
+          <span class="kind">青春校园</span>
+          <h3>《夏日自习室》</h3>
+          <p class="blurb">校园青春群像剧，聚焦高考前的最后一个夏天，轻松下饭，适合学生党与怀旧观众。</p>
+          <div class="meta"><span>热度 <strong>8.5</strong></span><span>全 20 集完结</span><span>评分 8.3</span></div>
+        </article>
+        <article class="card">
+          <span class="kind">科幻冒险</span>
+          <h3>《星轨之外》</h3>
+          <p class="blurb">近未来科幻剧，讲述深空探测队与地面失联后的自救故事，适合喜欢硬核设定的观众。</p>
+          <div class="meta"><span>热度 <strong>8.7</strong></span><span>更新至 10 集</span><span>评分 8.6</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. 最新更新 -->
+    <section class="section" id="latest">
+      <h2>最新更新动态</h2>
+      <p class="sub">近期剧集与电影更新节奏，方便安排追更计划。</p>
+      <ul class="compact-list">
+        <li><span class="idx">01</span><span class="txt">《晚风便利店》更新第 18 集，便利店主线进入收束阶段。</span><span class="date">06-12</span></li>
+        <li><span class="idx">02</span><span class="txt">《第七码头》全 12 集上线完结，适合一口气补完。</span><span class="date">06-11</span></li>
+        <li><span class="idx">03</span><span class="txt">《长安十二辰》更新第 24 集，新增两条支线悬念。</span><span class="date">06-10</span></li>
+        <li><span class="idx">04</span><span class="txt">《星轨之外》更新第 10 集，地面与深空双线交汇。</span><span class="date">06-09</span></li>
+        <li><span class="idx">05</span><span class="txt">高分电影《山与海的距离》上线，家庭伦理题材推荐。</span><span class="date">06-08</span></li>
+        <li><span class="idx">06</span><span class="txt">《夏日自习室》全 20 集完结，校园青春剧补看推荐。</span><span class="date">06-07</span></li>
+        <li><span class="idx">07</span><span class="txt">都市情感专区新增 6 部作品，覆盖职场与家庭方向。</span><span class="date">06-06</span></li>
+        <li><span class="idx">08</span><span class="txt">悬疑短剧专题更新，新增三部单集 30 分钟以内作品。</span><span class="date">06-05</span></li>
+      </ul>
+    </section>
+
+    <!-- 4. 分类入口 -->
+    <section class="section" id="categories">
+      <h2>按类型查找内容</h2>
+      <p class="sub">直接对应常见搜索类别，点击进入对应栏目定位。</p>
+      <div class="cat-grid">
+        <a href="/#hot">都市情感剧</a>
+        <a href="/#hot">悬疑短剧</a>
+        <a href="/#hot">高分电影</a>
+        <a href="/#hot">古装传奇</a>
+        <a href="/#hot">青春校园</a>
+        <a href="/#hot">科幻冒险</a>
+        <a href="/#hot">家庭伦理</a>
+        <a href="/#hot">犯罪推理</a>
+      </div>
+    </section>
+
+    <!-- 5. 深度解析正文 -->
+    <section class="section deep" id="deep">
+      <h2>深度解析：如何挑选适合自己节奏的影视内容</h2>
+      <p>在在线之家浏览内容时，最容易遇到的困惑不是“有没有可看的”，而是“先看哪一部”。剧集与电影的类型、更新节奏、单集时长和观看场景都会影响选择。下面从类型匹配、更新节奏和比较维度三个方向展开，帮助你更快做出判断。</p>
+
+      <h3>先按类型锁定大致方向</h3>
+      <p>如果你偏好情绪细腻、人物关系复杂的故事，都市情感和家庭伦理是更合适的方向；如果你更在意悬念推进和推理快感，悬疑短剧和犯罪推理会更对味；如果你希望轻松下饭、不费脑，青春校园和轻喜剧更合适。在线之家在分类入口和卡片标签中直接标注类型词，方便你用最短路径缩小范围。</p>
+      <ul>
+        <li>都市情感：适合通勤、睡前、周末碎片时间观看，单集时长多在 40 分钟左右。</li>
+        <li>悬疑短剧：适合通勤分段追看，单集 20—30 分钟，悬念密度高。</li>
+        <li>高分电影：适合周末完整时间块，片长 90—130 分钟，一次性看完体验更完整。</li>
+        <li>古装传奇：适合喜欢历史氛围与群像叙事的观众，更新周期通常较长。</li>
+      </ul>
+
+      <h3>更新节奏决定追更方式</h3>
+      <p>正在更新的剧集适合“追更”，已完结作品适合“补看”。如果你不想被周更打断情绪，可以优先选择已完结的悬疑短剧或高分电影；如果你喜欢讨论和等待，可以跟进正在更新的都市情感剧。在线之家在最新更新板块标注了更新集数和节奏，方便你判断是现在开始追，还是等完结后一口气看完。</p>
+      <p>对于悬疑类内容，建议避开剧透讨论区，先按自己的节奏看完关键集数；对于家庭伦理和都市情感类内容，更新节奏通常更平稳，适合搭配日常通勤和睡前时间分段观看。</p>
+
+      <h3>比较维度：时长、口碑与观看场景</h3>
+      <p>当你在两部作品之间犹豫时，可以从三个维度比较：第一是单集或总片长，是否匹配你当前可用的时间；第二是口碑与热度，是否在同类作品中表现稳定；第三是观看场景，是适合专注观看还是适合背景播放。在线之家在热门推荐卡片中提供了热度、更新状态和评分等参考信息，帮助你完成初步比较。</p>
+      <ul>
+        <li>时间有限：优先选择单集 30 分钟以内的悬疑短剧或短片合集。</li>
+        <li>追求完整叙事：优先选择已完结剧集或高分电影，避免周更打断。</li>
+        <li>喜欢讨论氛围：选择正在更新、有评论互动的热播剧集。</li>
+        <li>家庭共同观看：优先选择家庭伦理、轻喜剧或合家欢题材。</li>
+      </ul>
+      <p>无论你最终选择哪一部，建议先看一集或前 20 分钟再决定是否继续。在线之家提供的类型标签、更新节奏和用户评论可以作为参考，但最终判断仍以你的实际观看体验为准。</p>
+    </section>
+
+    <!-- 6. 体验指南 -->
+    <section class="section" id="guide">
+      <h2>观看与筛选指南</h2>
+      <p class="sub">从入口到收藏，一步步找到适合你的内容。</p>
+      <ol class="steps">
+        <li><strong>从频道导航进入：</strong>左栏频道覆盖热播、最新、分类、深度解析等方向，按需求点击即可定位到对应板块。</li>
+        <li><strong>用分类缩小范围：</strong>在分类入口中选择都市情感、悬疑短剧或高分电影等类型，快速过滤出符合方向的内容。</li>
+        <li><strong>查看更新状态：</strong>在最新更新动态中确认剧集是连载还是完结，决定追更还是补看。</li>
+        <li><strong>参考评价与标签：</strong>卡片中的类型标签、热度和评分可作为初步比较依据，用户评论提供更多观看感受。</li>
+        <li><strong>移动端适配：</strong>手机上频道导航转为横向标签，分类与卡片自动堆叠，正文保持可读行宽，通勤途中也能顺畅浏览。</li>
+      </ol>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section" id="faq">
+      <h2>常见问答</h2>
+      <details class="faq">
+        <summary>在线之家主要收录哪些类型的影视内容？</summary>
+        <p>以剧集和电影为主，涵盖都市情感、悬疑短剧、古装传奇、青春校园、科幻冒险、家庭伦理和犯罪推理等常见类型，同时提供分类入口与更新动态。</p>
+      </details>
+      <details class="faq">
+        <summary>悬疑短剧适合什么人看？一般多久更新一次？</summary>
+        <p>悬疑短剧单集时长通常在 20—30 分钟，适合通勤、午休等碎片时间观看，也适合喜欢强悬念、快节奏的观众。更新节奏因作品而异，页面在最新更新板块会标注连载状态和更新集数。</p>
+      </details>
+      <details class="faq">
+        <summary>都市情感剧和家庭伦理剧有什么区别，怎么选？</summary>
+        <p>都市情感更侧重职场、恋爱与城市生活，节奏相对轻快；家庭伦理更关注代际关系与家庭矛盾，情绪浓度更高。想轻松下饭可以选都市情感，想深入讨论可以选家庭伦理。</p>
+      </details>
+      <details class="faq">
+        <summary>已经完结的高分电影和连载剧集，哪个更适合周末看？</summary>
+        <p>如果周末只有两小时左右，优先选择 90—130 分钟的高分电影，一次看完体验完整；如果有连续多个晚上，可以选择已完结的短剧集中补看，避免等待更新。</p>
+      </details>
+      <details class="faq">
+        <summary>怎么判断一部剧是追更还是等完结再补？</summary>
+        <p>看更新状态：标注“更新至 X 集”的适合追更，标注“全 X 集完结”的适合补看。悬疑类建议完结后集中观看，减少剧透干扰；都市情感类可以按更新节奏分段追。</p>
+      </details>
+      <details class="faq">
+        <summary>和同类影视导航页面相比，在线之家的推荐有什么不同？</summary>
+        <p>页面更强调按类型和观看场景筛选，卡片中直接标注单集时长、更新状态和适合的观看场景，同时提供深度解析和用户评论作为比较参考，帮助你在几部作品之间做出选择。</p>
+      </details>
+    </section>
+
+    <!-- 8. 用户评论 -->
+    <section class="section" id="comments">
+      <h2>用户评论</h2>
+      <p class="sub">来自示例用户的观看感受，语气与观点多样，仅供参考。</p>
+      <div class="comments">
+        <div class="comment"><div class="who"><span class="avatar">林</span>林间小憩</div><p class="text">《晚风便利店》很适合睡前看，节奏不赶，情绪也稳。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">陈</span>陈默看剧</div><p class="text">悬疑短剧《第七码头》十二集刚好，通勤两周追完，不拖。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">苏</span>苏打气泡</div><p class="text">分类入口挺直观，直接按都市情感筛，省了不少时间。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">周</span>周末放映员</div><p class="text">高分电影推荐里《山与海的距离》值得一看，家庭线写得很克制。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">何</span>何同学</div><p class="text">校园剧《夏日自习室》下饭不错，但后几集节奏稍慢。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">郑</span>郑在追剧</div><p class="text">更新动态标了集数，追更的时候心里有数，这个细节好。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">吴</span>吴聊看看</div><p class="text">科幻剧《星轨之外》设定可以，希望后面别收得太仓促。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">许</span>许愿清单</div><p class="text">在几部都市情感剧之间犹豫，看了评论才决定先开《晚风便利店》。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">孙</span>孙悟饭</div><p class="text">古装传奇的历史氛围不错，服化道比预想中认真。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">马</span>马不停蹄</div><p class="text">通勤时间短，悬疑短剧最合适，一集刚好一站地铁。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">朱</span>朱砂痣</div><p class="text">家庭伦理那部电影后劲挺大，适合周末一个人安静看。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">胡</span>胡桃夹子</div><p class="text">页面分类清楚，比在多个平台之间来回翻要省事。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">郭</span>郭外斜</div><p class="text">希望完结剧集能再多一点，追更等起来还是有点熬人。</p></div>
+        <div class="comment"><div class="who"><span class="avatar">罗</span>罗盘指针</div><p class="text">深度解析里关于时长和场景的比较挺实用，选片没那么纠结了。</p></div>
+      </div>
+    </section>
+
+    <!-- 9. 相关资讯 -->
+    <section class="section" id="news">
+      <h2>相关资讯</h2>
+      <ul class="news-list">
+        <li>
+          <h3>都市情感题材持续升温，短剧集更受通勤用户关注</h3>
+          <div class="meta"><span>06-12</span><span>类型观察</span></div>
+          <p>近期都市情感类内容在单集时长和叙事节奏上更贴近碎片化观看，适合通勤与睡前场景的作品数量增加。</p>
+        </li>
+        <li>
+          <h3>悬疑短剧完结潮：适合一口气补看的作品增多</h3>
+          <div class="meta"><span>06-11</span><span>更新节奏</span></div>
+          <p>多部 12 集以内的悬疑短剧陆续完结，单集 20—30 分钟的体量更契合分段追看习惯。</p>
+        </li>
+        <li>
+          <h3>高分电影推荐方向：家庭伦理与现实主义题材受关注</h3>
+          <div class="meta"><span>06-09</span><span>口碑观察</span></div>
+          <p>近两周上线的剧情片中，家庭关系和现实议题成为讨论热点，适合周末完整时间块观看。</p>
+        </li>
+        <li>
+          <h3>古装传奇剧更新周期拉长，观众更看重群像塑造</h3>
+          <div class="meta"><span>06-08</span><span>题材趋势</span></div>
+          <p>古装传奇类作品在更新节奏上普遍偏慢，观众对人物群像和历史氛围的要求明显提高。</p>
+        </li>
+        <li>
+          <h3>科幻冒险类剧集增加，硬核设定与情感线并重</h3>
+          <div class="meta"><span>06-06</span><span>类型动态</span></div>
+          <p>近未来题材作品数量上升，深空探索与地面救援的双线叙事成为常见结构。</p>
+        </li>
+        <li>
+          <h3>校园青春剧完结季：适合下饭观看的轻体量作品</h3>
+          <div class="meta"><span>06-05</span><span>补看推荐</span></div>
+          <p>多部校园群像剧完结，节奏轻松、单集时长适中，适合学生党与怀旧观众补看。</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 10. 相关推荐 -->
+    <section class="section" id="recommend">
+      <h2>延伸推荐方向</h2>
+      <p class="sub">按具体内容方向词继续发现，不泛泛而谈。</p>
+      <div class="rec-tags">
+        <a href="/#hot">都市情感职场剧</a>
+        <a href="/#hot">双男主悬疑短剧</a>
+        <a href="/#hot">高分家庭伦理电影</a>
+        <a href="/#hot">古装群像传奇剧</a>
+        <a href="/#hot">青春校园下饭剧</a>
+        <a href="/#hot">近未来科幻冒险</a>
+        <a href="/#hot">犯罪推理单元剧</a>
+        <a href="/#hot">周末一口气完结剧</a>
+      </div>
+    </section>
+
+    <!-- 11. 精选内容 / 创作者证言 -->
+    <section class="section" id="quotes">
+      <h2>观众与创作者怎么说</h2>
+      <div class="quote-grid">
+        <blockquote class="quote">“我习惯先看类型标签和单集时长，再决定是通勤追还是周末补。在线之家的卡片信息刚好覆盖这两个判断点。”<cite>—— 示例用户 · 通勤追剧党</cite></blockquote>
+        <blockquote class="quote">“悬疑短剧最怕被剧透，完结后集中看体验最好。更新状态标清楚，对这类观众很友好。”<cite>—— 示例用户 · 悬疑爱好者</cite></blockquote>
+        <blockquote class="quote">“家庭伦理题材需要完整时间块，周末晚上看一部电影比追十集剧更容易进入情绪。”<cite>—— 示例用户 · 周末观影者</cite></blockquote>
+        <blockquote class="quote">“分类入口直接写都市情感、悬疑短剧这些词，比抽象栏目名好用，找起来快。”<cite>—— 示例用户 · 分类筛选用户</cite></blockquote>
+      </div>
+    </section>
+
+    <!-- 12. 时间线 -->
+    <section class="section" id="timeline">
+      <h2>近期更新时间线</h2>
+      <ul class="timeline">
+        <li><span class="t">06-12</span><br>《晚风便利店》更新第 18 集，都市情感主线进入收束。</li>
+        <li><span class="t">06-11</span><br>《第七码头》全 12 集完结，悬疑短剧补看窗口开启。</li>
+        <li><span class="t">06-10</span><br>《长安十二辰》更新第 24 集，古装传奇支线展开。</li>
+        <li><span class="t">06-09</span><br>《星轨之外》更新第 10 集，科幻冒险双线交汇。</li>
+        <li><span class="t">06-08</span><br>高分电影《山与海的距离》上线，家庭伦理题材推荐。</li>
+        <li><span class="t">06-06</span><br>都市情感专区新增 6 部作品，职场与家庭方向覆盖。</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- 右栏 -->
+  <aside class="right-col" aria-label="辅助阅读入口">
+    <div class="panel">
+      <h2>页内目录</h2>
+      <nav class="toc" aria-label="页内目录">
+        <a href="/#about">内容简介</a>
+        <a href="/#hot">热门推荐</a>
+        <a href="/#latest">最新更新</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">观看指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#recommend">延伸推荐</a>
+        <a href="/#timeline">更新时间线</a>
+      </nav>
+    </div>
+    <div class="panel">
+      <h2>热门条目</h2>
+      <ul class="hot-list">
+        <li><span class="n">1</span><span class="title">《晚风便利店》都市情感</span></li>
+        <li><span class="n">2</span><span class="title">《第七码头》悬疑短剧</span></li>
+        <li><span class="n">3</span><span class="title">《山与海的距离》高分电影</span></li>
+        <li><span class="n">4</span><span class="title">《长安十二辰》古装传奇</span></li>
+        <li><span class="n">5</span><span class="title">《星轨之外》科幻冒险</span></li>
+        <li><span class="n">6</span><span class="title">《夏日自习室》青春校园</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>延伸阅读</h2>
+      <a class="read-more" href="/#deep">悬疑短剧怎么选：时长与节奏比较</a>
+      <a class="read-more" href="/#deep">都市情感剧适合什么场景观看</a>
+      <a class="read-more" href="/#faq">完结剧与连载剧的追看差异</a>
+      <a class="read-more" href="/#news">近期类型动态与更新节奏</a>
+      <a class="read-more" href="/#guide">移动端筛选与收藏指南</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- 页尾 -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/#home" class="brand" style="margin-bottom:10px;">
+          <svg viewBox="0 0 100 100" aria-hidden="true" style="width:28px;height:28px;">
+            <rect width="100" height="100" rx="22" fill="#0f172a"/>
+            <path d="M25 65 L50 25 L75 65 Z" fill="#f59e0b"/>
+            <circle cx="50" cy="72" r="10" fill="#f59e0b"/>
+          </svg>
+          <span>在线之家</span>
+        </a>
+        <p>聚合剧集与电影内容，提供分类筛选、更新动态和追剧推荐参考，帮助观众按类型与场景找到合适内容。</p>
+      </div>
+      <div>
+        <h3>内容频道</h3>
+        <a href="/#hot">热播剧集</a>
+        <a href="/#latest">最新更新</a>
+        <a href="/#categories">分类查找</a>
+        <a href="/#deep">深度解析</a>
+      </div>
+      <div>
+        <h3>观看参考</h3>
+        <a href="/#guide">观看指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+      </div>
+      <div>
+        <h3>发现更多</h3>
+        <a href="/#recommend">延伸推荐</a>
+        <a href="/#quotes">观众反馈</a>
+        <a href="/#timeline">更新时间线</a>
+        <a href="/#about">关于内容</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 在线之家 · 内容导航示例页面</span>
+      <span>部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+                                                                      </html>
